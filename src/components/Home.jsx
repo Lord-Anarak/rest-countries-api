@@ -14,6 +14,8 @@ const Home = () => {
 
   const [FilteredCountries, setFilteredCountries] = useState();
 
+  const [Value, setValue] = useState("");
+
   const {
     data: countries,
     isLoading,
@@ -21,7 +23,8 @@ const Home = () => {
     error,
   } = useGetCountriesQuery("countriesList");
 
-  if (isLoading) return <div>Loading Countries...</div>;
+  if (isLoading)
+    return <div className=" dark:text-white">Loading Countries...</div>;
 
   if (isError) return <div>{error?.data?.message}</div>;
 
@@ -38,9 +41,11 @@ const Home = () => {
     setOpen(false);
     setFilter(e);
     setFilteredCountries(countries.filter((country) => country.region === e));
+    setValue("");
   };
 
   const handleSearch = (event) => {
+    setValue(event.target.value);
     setFilteredCountries(
       Filter
         ? countries.filter(
@@ -64,7 +69,7 @@ const Home = () => {
   };
 
   return (
-    <div className="p-6 bg-VeryLightGray dark:bg-secondary">
+    <div className="p-6">
       <div className="flex flex-wrap gap-5 items-center justify-between w-full mx-auto max-w-6xl mt-5">
         <div className="flex items-center gap-4 px-6 bg-white dark:bg-primary w-full sm:w-72 h-10 rounded focus-within: border-black border border-transparent focus-within:border focus-within:border-black focus-within:dark:border-white hover:border hover:border-black hover:dark:border-white transition-all duration-300">
           <FaSearch color={darkMode ? "white" : "hsl(0, 0%, 52%)"} />
@@ -73,6 +78,7 @@ const Home = () => {
             maxLength={10}
             id="search"
             name="search"
+            value={Value}
             className="bg-transparent text-xs outline-none h-full w-full rounded dark:text-white"
             placeholder="Search for a country"
             onChange={handleSearch}

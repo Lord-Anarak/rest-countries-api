@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useGetCountriesQuery } from "../api/apiSlice";
 import { FaArrowLeft } from "react-icons/fa";
 
@@ -14,20 +14,22 @@ const Detail = () => {
     error,
   } = useGetCountriesQuery();
 
-  const [, countryName] = decodeURI(pathname.substring(1)).split("/");
+  const { countryName } = useParams();
 
-  if (isLoading) return <div>Loading...</div>;
+  console.log(countryName);
+
+  if (isLoading) return <div className="dark:text-white">Loading...</div>;
 
   if (isError) return <div>{error}</div>;
 
   const country = countries.find((country) => country.name === countryName);
 
   return (
-    <div className="p-6 pb-20 bg-VeryLightGray dark:bg-secondary xl:h-screen h-fit">
+    <div className="p-6">
       <div className="flex flex-col max-w-6xl w-full mx-auto">
         <Link
           className="sm:mt-16 mt-5 rounded bg-white dark:bg-primary p-3 flex justify-center items-center gap-3 w-32 dark:text-white text-xs shadow-md shadow-black/40"
-          to="/"
+          to="/rest-countries-api/"
         >
           <FaArrowLeft /> Back
         </Link>

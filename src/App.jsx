@@ -11,7 +11,7 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route path="/rest-countries-api/" element={<Home />} />
             <Route
-              path="/rest-countries-api/detail/:name"
+              path="/rest-countries-api/detail/:countryName"
               element={<Detail />}
             />
             <Route path="*" element={<Error404 />} />
