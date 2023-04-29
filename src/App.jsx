@@ -9,8 +9,11 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/detail/:name" element={<Detail />} />
+            <Route path="/rest-countries-api/" element={<Home />} />
+            <Route
+              path="/rest-countries-api/detail/:name"
+              element={<Detail />}
+            />
             <Route path="*" element={<Error404 />} />
           </Route>
         </Routes>
