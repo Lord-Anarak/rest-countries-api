@@ -125,7 +125,7 @@ const Home = () => {
             ))
           : countries.map((country, index) => (
               <li key={index}>
-                <Link to={`/detail/${country.name}`}>
+                <Link to={`/rest-countries-api/detail/${country.name}`}>
                   <CountryThumb country={country} />
                 </Link>
               </li>
