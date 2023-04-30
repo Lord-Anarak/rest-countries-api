@@ -24,7 +24,11 @@ const Home = () => {
   } = useGetCountriesQuery("countriesList");
 
   if (isLoading)
-    return <div className=" dark:text-white">Loading Countries...</div>;
+    return (
+      <div className=" dark:text-white p-20 flex justify-center">
+        Loading Countries...
+      </div>
+    );
 
   if (isError) return <div>{error?.data?.message}</div>;
 
@@ -124,7 +128,7 @@ const Home = () => {
         {FilteredCountries
           ? FilteredCountries.map((country, index) => (
               <li key={index}>
-                <Link to={`/detail/${country.name}`}>
+                <Link to={`/rest-countries-api/detail/${country.name}`}>
                   <CountryThumb country={country} />
                 </Link>
               </li>

@@ -18,7 +18,12 @@ const Detail = () => {
 
   console.log(countryName);
 
-  if (isLoading) return <div className="dark:text-white">Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="dark:text-white p-20 flex justify-center">
+        Loading Details...
+      </div>
+    );
 
   if (isError) return <div>{error}</div>;
 
